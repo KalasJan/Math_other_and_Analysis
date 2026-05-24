@@ -1,6 +1,6 @@
 # reseni nelinearnich rovnic
 
-# reste rovnici e^x = sin (x)
+# reste rovnici 16^x = 8x
 
 from scipy.optimize import fsolve #pro reseni
 from numpy import linspace #funkce v rovnici
