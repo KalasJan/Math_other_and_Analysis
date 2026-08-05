@@ -3,11 +3,13 @@
 A collection of production-ready Python scripts focused on numerical analysis, multidimensional visualizations, linear algebra, and discrete mathematics algorithms.
 
 ## Key Features
-- **Multidimensional Visualizations:** Generating advanced 3D surface models and multi-variable integration routines (`SciPy` via `nquad`).
-- **Equation & Algebra Solvers:** Solving systems of both linear and non-linear equations (e.g., 16^x = 8x), matrix transformations, and coordinate vector operations (`NumPy`).
+- **Multidimensional Visualizations & Calculus:** Generating advanced 3D surface models, multi-variable integration routines (`SciPy` via `nquad`), and computing gradient vector fields for calculus applications.
+- **Fourier Analysis & Signal Processing:** Implementations of Fourier series expansions and Fast Fourier Transforms (FFT) for spectral analysis and mathematical transformations.
+- **Equation & Algebra Solvers:** Solving systems of both linear and non-linear equations, matrix transformations, and coordinate vector operations (`NumPy`).
 - **Descriptive Statistics:** Calculating central tendencies (Averages, Medians, Modes) and analyzing variance over numerical data arrays.
 - **Discrete & Combinatorial Math:** Implementations of combinatorics calculators, prime number generators (Sieve of Eratosthenes logic), and number base converters.
 - **Algorithm Architecture:** Core programmatic patterns including recursion models (Russian doll logic), Fibonacci sequencing, and multi-approach factorial optimization.
+
 
 ## Tech Stack
 - **NumPy** – For matrix operations, vectorization, and fast coordinate grid generation (`meshgrid`).
