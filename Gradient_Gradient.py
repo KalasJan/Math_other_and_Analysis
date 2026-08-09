@@ -16,8 +16,8 @@ def function(x,y):
     return f
 
 # def bod (Px,Py):
-Px = 1
-Py = 2
+Px = np.pi
+Py = np.pi/2
 
 
 # 1) vykresleni puvodniho grafu
@@ -38,7 +38,7 @@ ax.view_init(elev=30, azim=30)
 ax.set_xlabel('X')
 ax.set_ylabel('Y')
 ax.set_zlabel('Z')
-ax.set_title("3D graf fce $f(x,y) = x \cdot \sin(y) + y \cdot \sin(y)$")
+ax.set_title("3D graf fce $f(x,y) = x \cdot \sin(y) + y \cdot \sin(x)$")
 
 # -----------------------------------------------------
 
@@ -117,5 +117,47 @@ plt.axis('equal')
 plt.grid(True, linestyle=':', alpha=0.4)
 plt.title(r'Analýza gradientu a směrové derivace v bodě $P$', fontsize=12, pad=15)
 plt.legend(loc='upper right')
+
+# ---------------------------------------------------------
+
+# 6) 3D graf
+fig_3d = plt.figure(figsize=(12, 9))
+ax_3d = fig_3d.add_subplot(111, projection='3d')
+
+# povrch
+povrch = ax_3d.plot_surface(X, Y, Z, cmap='ocean', edgecolor='none', alpha=0.7, zorder=1)
+
+# vyska
+Pz = function(Px, Py)
+
+# a) zobrazeni bodu
+ax_3d.scatter([Px], [Py], [Pz], color='red', s=150, zorder=10, label=f'Bod P na povrchu [{Pz:.2f}]')
+
+dist = 0.5
+
+# b) zadany smer
+dx_u = u_normovany[0] * dist
+dy_u = u_normovany[1] * dist
+dz_u = smerova_der * dist
+
+ax_3d.quiver(Px, Py, Pz, dx_u, dy_u, dz_u, 
+             color='orange', linewidth=3, arrow_length_ratio=0.3, zorder=5, label='Zadaný směr $u$')
+
+# c) Nejvetsi stoupani / nejvetsi snizovani, podle jeho vlastni delky
+dx_g = grad_unit[0] * dist
+dy_g = grad_unit[1] * dist
+dz_g = delka_smer * dist
+
+ax_3d.quiver(Px, Py, Pz, dx_g, dy_g, dz_g, 
+             color='red', linewidth=3, arrow_length_ratio=0.3, zorder=5, label='Směr největšího stoupání')
+
+# vizualizace
+ax_3d.set_title('Prostorový 3D pohled na gradient a sklony v bodě $P$', fontsize=13, pad=15)
+ax_3d.set_xlabel('Osa X')
+ax_3d.set_ylabel('Osa Y')
+ax_3d.set_zlabel('Osa Z (Výška)')
+
+ax_3d.grid(True, linestyle=':', alpha=0.4)
+ax_3d.legend(loc='upper left')
 
 plt.show()
