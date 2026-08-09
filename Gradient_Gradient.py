@@ -96,7 +96,7 @@ vrstevnice = plt.contour(X, Y, Z, levels=20, cmap='Greens', alpha=0.6)
 plt.clabel(vrstevnice, inline=True, fontsize=8) # Popisky výšek u vrstevnic
 
 # b) zvyrazneny bod
-plt.scatter(Px, Py, color='black', s=150, zorder=5, label=r'Bod P ($\pi$, $\pi/2$)')
+plt.scatter(Px, Py, color='Green', s=150, zorder=5, label=r'Bod P ($\pi$, $\pi/2$)')
 # c) zadany vektor
 plt.quiver(Px, Py, u_normovany[0], u_normovany[1], 
            color='orange', scale=5, zorder=4, label='Zadaný směr $u$')
@@ -131,7 +131,7 @@ povrch = ax_3d.plot_surface(X, Y, Z, cmap='ocean', edgecolor='none', alpha=0.7, 
 Pz = function(Px, Py)
 
 # a) zobrazeni bodu
-ax_3d.scatter([Px], [Py], [Pz], color='red', s=150, zorder=10, label=f'Bod P na povrchu [{Pz:.2f}]')
+ax_3d.scatter([Px], [Py], [Pz], color='Green', s=150, zorder=10, label='Bod P na povrchu')
 
 dist = 0.5
 
@@ -143,6 +143,12 @@ dz_u = smerova_der * dist
 ax_3d.quiver(Px, Py, Pz, dx_u, dy_u, dz_u, 
              color='orange', linewidth=3, arrow_length_ratio=0.3, zorder=5, label='Zadaný směr $u$')
 
+# Souranice bodu D - ve smeru
+Dx, Dy, Dz = Px + dx_u, Py + dy_u, Pz + dz_u
+
+ax_3d.scatter([Dx], [Dy], [Dz], color='orange', s=100, zorder=10, 
+             label=f'Cílový bod D ve směru u [{Dx:.2f}, {Dy:.2f}, {Dz:.2f}]')
+
 # c) Nejvetsi stoupani / nejvetsi snizovani, podle jeho vlastni delky
 dx_g = grad_unit[0] * dist
 dy_g = grad_unit[1] * dist
@@ -151,6 +157,13 @@ dz_g = delka_smer * dist
 ax_3d.quiver(Px, Py, Pz, dx_g, dy_g, dz_g, 
              color='red', linewidth=3, arrow_length_ratio=0.3, zorder=5, label='Směr největšího stoupání')
 
+# bod M - maximalni
+Mx, My, Mz = Px + dx_g, Py + dy_g, Pz + dz_g
+
+ax_3d.scatter([Mx], [My], [Mz], color='red', s=100, zorder=10, 
+             label=f'Bod M - max. stoupání [{Mx:.2f}, {My:.2f}, {Mz:.2f}]')
+
+
 # vizualizace
 ax_3d.set_title('Prostorový 3D pohled na gradient a sklony v bodě $P$', fontsize=13, pad=15)
 ax_3d.set_xlabel('Osa X')
@@ -158,6 +171,6 @@ ax_3d.set_ylabel('Osa Y')
 ax_3d.set_zlabel('Osa Z (Výška)')
 
 ax_3d.grid(True, linestyle=':', alpha=0.4)
-ax_3d.legend(loc='upper left')
+ax_3d.legend()
 
 plt.show()
